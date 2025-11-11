@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Gamers World</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .fade-in {
+            opacity: 0;
+            transition: opacity 2s;
+        }
+
+        .show {
+            opacity: 1;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #1a1a1a;
+            padding: 20px;
+        }
+
+        header h1 {
+            margin: 0;
+            padding: 0;
+            font-size: 3em;
+            flex: 1;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: flex-end;
+            flex: 1;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: #00ff00;
+            text-decoration: none;
+            font-size: 1.2em;
+        }
+
+        nav ul li a.nav-button {
+            opacity: 0;
+            transition: opacity 2s;
+        }
+
+        .nav-show {
+            opacity: 1 !important;
+        }
+
+        main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .about-us {
+            display: flex;
+            align-items: center;
+        }
+
+        .about-us img {
+            max-width: 300px;
+            margin-right: 20px;
+        }
+
+        .about-us div {
+            text-align: left;
+        }
+
+        .about-us h2 {
+            font-size: 2.5em;
+            color: #00ff00;
+        }
+
+        .about-us p {
+            font-size: 1.5em;
+        }
+
+        footer {
+            display: flex;
+            justify-content: flex-end;
+            padding-right: 20px;
+            background: #1a1a1a;
+            color: #ffffff;
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        .message-box {
+            border: 1px solid #00ff00;
+            padding: 10px;
+            background-color: #333;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1 class="fade-in">Welcome to Gamers World</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html" class="nav-button">Home</a></li>
+                <li><a href="register.html" class="nav-button">Register</a></li>
+                <li><a href="items.html" class="nav-button">View Items</a></li>
+                <li><a href="checkout.html" class="nav-button">Checkout</a></li>
+                <li><a href="orders.html" class="nav-button">View Orders</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="about-us">
+            <img src="https://thedrum-media.imgix.net/thedrum-prod/s3/news/tmp/134998/razer.jpeg?w=608&ar=default&fit=crop&crop=faces&auto=format" alt="About Us Image" class="fade-in">
+            <div class="fade-in">
+                <h2>About Us</h2>
+                <div class="message-box">
+                    <p>Welcome to Gamers World, your one-stop shop for all things gaming. Whether you're looking to register as a member, view and select items, checkout your purchase, or view your orders, we've got you covered.</p>
+                    <p>Explore our website to find the best deals and offers exclusively for our members.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>Contact us at <a href="mailto:hhggy967@gmail.com">email_to_gamersworld</a></p>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            document.querySelectorAll('.fade-in').forEach(element => {
+                element.classList.add('show');
+            });
+
+            setTimeout(() => {
+                document.querySelectorAll('.nav-button').forEach(element => {
+                    element.classList.add('nav-show');
+                });
+            }, 500);
+        });
+    </script>
+</body>
+</html>

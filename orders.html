@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>View Orders - Gamers World</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .fade-in {
+            opacity: 0;
+            transition: opacity 2s ease-in-out;
+        }
+
+        .show {
+            opacity: 1;
+        }
+
+        .order {
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin: 10px 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .order img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            margin-right: 10px;
+        }
+
+        .order-details {
+            flex-grow: 1;
+        }
+
+        .order-details h3 {
+            margin: 0;
+        }
+
+        .order-actions {
+            text-align: right;
+        }
+
+        .cancel-button {
+            padding: 5px 10px;
+            background-color: #f44336;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <header class="fade-in">
+        <h1>View Orders</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="register.html">Register</a></li>
+                <li><a href="items.html">View Items</a></li>
+                <li><a href="checkout.html">Checkout</a></li>
+                <li><a href="orders.html">View Orders</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main class="fade-in">
+        <section>
+            <h2>Your Orders</h2>
+            <div id="orders-list">
+                <!-- Orders will be dynamically loaded here -->
+            </div>
+        </section>
+    </main>
+    <footer class="fade-in">
+        <p>Contact us at <a href="mailto:admin@gamersworld.com">admin@gamersworld.com</a></p>
+    </footer>
+    <script>
+        let orders = [
+            {
+                id: 1,
+                name: "Razer Enki Pro Hypersense",
+                price: 1299.99,
+                image: "https://assets2.razerzone.com/images/pnx.assets/556b9b1af3cc811e40b2c9ecd4a09879/enkipro-hypersense-ogimg-1200x630.jpg",
+            },
+            {
+                id: 2,
+                name: "Razer 18 Lifestyle",
+                price: 259.99,
+                image: "https://www.ebuyer.com/blog/wp-content/uploads/2023/04/Razer-18-lifestyle-1.jpg",
+            },
+            {
+                id: 3,
+                name: "Razer Viper V3 Pro",
+                price: 149.99,
+                image: "https://assets2.razerzone.com/images/pnx.assets/9fd641835510958a2951b1e004bedec3/500x500-razer-viper-v3-pro.webp",
+            },
+        ];
+
+        function loadOrders() {
+            const ordersList = document.getElementById('orders-list');
+            ordersList.innerHTML = '';  // Clear existing orders
+
+            orders.forEach(order => {
+                const orderElement = document.createElement('div');
+                orderElement.classList.add('order');
+
+                orderElement.innerHTML = `
+                    <img src="${order.image}" alt="${order.name}">
+                    <div class="order-details">
+                        <h3>${order.name}</h3>
+                        <p>Price: $${order.price.toFixed(2)}</p>
+                    </div>
+                    <div class="order-actions">
+                        <button class="cancel-button" onclick="cancelOrder(${order.id})">Cancel</button>
+                    </div>
+                `;
+
+                ordersList.appendChild(orderElement);
+            });
+        }
+
+        function cancelOrder(orderId) {
+            if (confirm("Are you sure you want to cancel this order?")) {
+                // Remove the order from the orders array
+                orders = orders.filter(order => order.id !== orderId);
+                // Reload orders list after cancelling
+                loadOrders();
+                alert("Order " + orderId + " has been cancelled.");
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            document.querySelectorAll('.fade-in').forEach(element => {
+                element.classList.add('show');
+            });
+
+            loadOrders();
+        });
+    </script>
+</body>
+</html>

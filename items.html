@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>View Items - Gamers World</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .fade-in {
+            opacity: 0;
+            transition: opacity 2s ease-in-out;
+        }
+
+        .show {
+            opacity: 1;
+        }
+
+        .item {
+            text-align: left;
+            margin: 20px;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .item img {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .item-description {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .item-description div {
+            max-width: 60%;
+        }
+    </style>
+</head>
+<body>
+    <header class="fade-in">
+        <h1>View and Select Items</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html" class="nav-button">Home</a></li>
+                <li><a href="register.html" class="nav-button">Register</a></li>
+                <li><a href="items.html" class="nav-button">View Items</a></li>
+                <li><a href="checkout.html" class="nav-button">Checkout</a></li>
+                <li><a href="orders.html" class="nav-button">View Orders</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <h2>Items Available</h2>
+            <ul>
+                <li class="item">
+                    <div class="item-description">
+                        <div>
+                            <h3>Razer Enki Pro Hypersense</h3>
+                            <p>Price: $1299.99</p>
+                            <p>A gaming chair that provides optimal comfort and haptic feedback.</p>
+                        </div>
+                        <img src="https://assets2.razerzone.com/images/pnx.assets/556b9b1af3cc811e40b2c9ecd4a09879/enkipro-hypersense-ogimg-1200x630.jpg" alt="Razer Enki Pro Hypersense">
+                    </div>
+                    <button onclick="addToCart('Razer Enki Pro Hypersense', 1299.99)">Add to Cart</button>
+                </li>
+                <li class="item">
+                    <div class="item-description">
+                        <div>
+                            <h3>Razer 18 Lifestyle</h3>
+                            <p>Price: $259.99</p>
+                            <p>Experience the ultimate gaming performance with Razer's latest tech.</p>
+                        </div>
+                        <img src="https://www.ebuyer.com/blog/wp-content/uploads/2023/04/Razer-18-lifestyle-1.jpg" alt="Razer 18 Lifestyle">
+                    </div>
+                    <button onclick="addToCart('Razer 18 Lifestyle', 259.99)">Add to Cart</button>
+                </li>
+                <li class="item">
+                    <div class="item-description">
+                        <div>
+                            <h3>Razer Viper V3 Pro</h3>
+                            <p>Price: $149.99</p>
+                            <p>A lightweight, ultra-fast gaming mouse with precision control.</p>
+                        </div>
+                        <img src="https://assets2.razerzone.com/images/pnx.assets/9fd641835510958a2951b1e004bedec3/500x500-razer-viper-v3-pro.webp" alt="Razer Viper V3 Pro">
+                    </div>
+                    <button onclick="addToCart('Razer Viper V3 Pro', 149.99)">Add to Cart</button>
+                </li>
+                <li class="item">
+                    <div class="item-description">
+                        <div>
+                            <h3>Razer Huntsman V3 Pro</h3>
+                            <p>Price: $199.99</p>
+                            <p>An advanced gaming keyboard with ultra-responsive keys.</p>
+                        </div>
+                        <img src="https://assets2.razerzone.com/images/pnx.assets/5330432bc718cd8deb4f652df8f2fbd3/razer-huntsman-v3-pro-500x500.webp" alt="Razer Huntsman V3 Pro">
+                    </div>
+                    <button onclick="addToCart('Razer Huntsman V3 Pro', 199.99)">Add to Cart</button>
+                </li>
+            </ul>
+        </section>
+    </main>
+    <footer class="fade-in">
+        <p>Contact us at <a href="mailto:admin@gamersworld.com">admin@gamersworld.com</a></p>
+    </footer>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            document.querySelectorAll('.fade-in').forEach(element => {
+                element.classList.add('show');
+            });
+
+            let items = document.querySelectorAll('.item');
+            items.forEach((item, index) => {
+                setTimeout(() => {
+                    item.style.opacity = '1';
+                }, index * 300); // Stagger the fade-in effect by 300ms for each item
+            });
+        });
+
+        function addToCart(itemName, itemPrice) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cart.push({ name: itemName, price: itemPrice });
+            localStorage.setItem('cart', JSON.stringify(cart));
+            alert(itemName + " has been added to your cart!");
+        }
+    </script>
+</body>
+</html>

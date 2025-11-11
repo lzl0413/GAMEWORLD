@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Register - Gamers World</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .fade-in {
+            opacity: 0;
+            transition: opacity 2s;
+        }
+
+        .show {
+            opacity: 1;
+        }
+
+        form {
+            max-width: 400px;
+            margin: auto;
+            padding: 20px;
+            border: 2px solid #00ff00;
+            border-radius: 10px;
+            background-color: #1a1a1a;
+        }
+
+        form label {
+            display: block;
+            margin: 10px 0 5px;
+            color: #00ff00;
+        }
+
+        form input {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 2px solid #00ff00;
+            border-radius: 5px;
+            background-color: #0f0f0f;
+            color: #ffffff;
+        }
+
+        form button {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #00ff00;
+            border-radius: 5px;
+            background-color: #0f0f0f;
+            color: #00ff00;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        form button:hover {
+            background-color: #00ff00;
+            color: #0f0f0f;
+        }
+
+        .popup-message {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            background-color: #0f0f0f;
+            border: 2px solid #00ff00;
+            border-radius: 10px;
+            color: #00ff00;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1 class="fade-in">Register at Gamers World</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html" class="nav-button">Home</a></li>
+                <li><a href="register.html" class="nav-button">Register</a></li>
+                <li><a href="items.html" class="nav-button">View Items</a></li>
+                <li><a href="checkout.html" class="nav-button">Checkout</a></li>
+                <li><a href="orders.html" class="nav-button">View Orders</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <h2 class="fade-in">Register as a Member</h2>
+            <form class="fade-in" action="#" method="post" onsubmit="showPopupMessage(event)">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required><br>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required><br>
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required><br>
+                <button type="submit">Register</button>
+            </form>
+        </section>
+    </main>
+    <footer>
+        <p>Contact us at <a href="mailto:admin@gamersworld.com">admin@gamersworld.com</a></p>
+    </footer>
+
+    <div id="popup-message" class="popup-message">You have successfully registered!</div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            document.querySelectorAll('.fade-in').forEach(element => {
+                element.classList.add('show');
+            });
+        });
+
+        function showPopupMessage(event) {
+            event.preventDefault(); // Prevent the form from submitting
+
+            const popupMessage = document.getElementById('popup-message');
+            popupMessage.style.display = 'block';
+
+            setTimeout(() => {
+                popupMessage.style.display = 'none';
+            }, 3000); // Hide the message after 3 seconds
+        }
+    </script>
+</body>
+</html>

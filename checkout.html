@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Checkout - Gamers World</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .fade-in {
+            opacity: 0;
+            transition: opacity 2s ease-in-out;
+        }
+
+        .show {
+            opacity: 1;
+        }
+
+        .neon-box {
+            background-color: black;
+            color: #4caf50;
+            padding: 10px;
+            border: 2px solid #4caf50;
+            border-radius: 5px;
+            margin: 10px 0;
+            font-family: Arial, sans-serif;
+            display: inline-block;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        form label {
+            margin-top: 10px;
+        }
+
+        form input {
+            padding: 10px;
+            margin-top: 5px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            background-color: black;
+            color: white;
+            width: 300px;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <header class="fade-in">
+        <h1>Checkout Payment</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="register.html">Register</a></li>
+                <li><a href="items.html">View Items</a></li>
+                <li><a href="checkout.html">Checkout</a></li>
+                <li><a href="orders.html">View Orders</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main class="fade-in">
+        <section>
+            <h2>Checkout</h2>
+            <div id="cart-items">
+                <h3>Selected Items:</h3>
+                <ul id="item-list"></ul>
+                <h3>Total Price: $<span id="total-price">0.00</span></h3>
+            </div>
+            <form id="payment-form">
+                <div class="neon-box">
+                    <label for="cardnumber">Card Number:</label>
+                    <input type="text" id="cardnumber" name="cardnumber" required>
+                </div>
+                <div class="neon-box">
+                    <label for="expirydate">Expiry Date:</label>
+                    <input type="text" id="expirydate" name="expirydate" required>
+                </div>
+                <div class="neon-box">
+                    <label for="cvv">CVV:</label>
+                    <input type="text" id="cvv" name="cvv" required>
+                </div>
+                <button type="submit">Pay Now</button>
+            </form>
+        </section>
+    </main>
+    <footer class="fade-in">
+        <p>Contact us at <a href="mailto:admin@gamersworld.com">admin@gamersworld.com</a></p>
+    </footer>
+    <script>
+        function loadCartItems() {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            let itemList = document.getElementById('item-list');
+            let totalPrice = 0;
+
+            cart.forEach(item => {
+                let li = document.createElement('li');
+                li.textContent = `${item.name} - $${item.price.toFixed(2)}`;
+                itemList.appendChild(li);
+                totalPrice += item.price;
+            });
+
+            document.getElementById('total-price').textContent = totalPrice.toFixed(2);
+        }
+
+        function handlePayment(event) {
+            event.preventDefault();
+            alert("Your payment is successful!");
+            localStorage.removeItem('cart');
+            document.getElementById('item-list').innerHTML = '';
+            document.getElementById('total-price').textContent = '0.00';
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            document.querySelectorAll('.fade-in').forEach(element => {
+                element.classList.add('show');
+            });
+
+            loadCartItems();
+            document.getElementById('payment-form').addEventListener('submit', handlePayment);
+        });
+    </script>
+</body>
+</html>
